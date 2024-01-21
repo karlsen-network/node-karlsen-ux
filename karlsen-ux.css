@@ -26,15 +26,18 @@ body {
 	--flow-tab-font-size: 1.5rem;
 	--flow-link-color: #4C5157;
 	--flow-link-hover-color: #43464A;
-	--flow-btn-hover-border-color: #808080;
+	--flow-btn-primary-bg-color: #4C5157;
+	--flow-btn-primary-border-color: #4C5157;
+	--flow-btn-hover-primary-color: #B1B1B1;
+	--flow-btn-hover-border-color: #373B3F;
 	--flow-data-badge-caption: #000;
 	--flow-data-badge-caption-shadow: #4C5157;
-	--flow-data-badge-graph-fill: rgb(0, 105, 95, 0.15);
-	--flow-data-badge-graph-stroke: rgba(0, 105, 95, 1.0);
+	--flow-data-badge-graph-fill: rgb(48, 114, 152, 0.15);
+	--flow-data-badge-graph-stroke: rgba(48, 114, 152, 1.0);
 	--flow-data-badge-graph-stroke-width: 1px;
 	--flow-data-badge-graph-stroke-opacity: 0.3;
-	--flow-graph-fill: rgb(0, 105, 95, 0.15);
-	--flow-graph-stroke: rgba(0, 105, 95, 1.0);
+	--flow-graph-fill: rgb(48, 114, 152, 0.15);
+	--flow-graph-stroke: rgba(48, 114, 152, 1.0);
 	--flow-graph-stroke-width: 1px;
 	--flow-graph-stroke-opacity: 0.3;
 	--flow-input-min-width: 300px;
@@ -94,13 +97,13 @@ body {
 }
 
 body.flow-theme-dark {
-	--flow-primary-color: #4C5157;
+	--flow-primary-color: #B1B1B1;
 	--flow-border-color: #4C5157;
 	--flow-data-badge-value: #fff;
 	--flow-data-badge-caption: #ccc;
 	--flow-data-badge-caption-shawod: #4C5157;
-	--flow-data-badge-graph-fill: rgb(0, 105, 95, 0.5);
-	--flow-data-badge-graph-stroke: rgb(1, 138, 124);
+	--flow-data-badge-graph-fill: rgb(48, 114, 152, 0.5);
+	--flow-data-badge-graph-stroke: rgba(48, 114, 152, 1.0);
 	--flow-data-badge-graph-stroke-width: 1px;
 	--flow-data-badge-graph-stroke-opacity: 0.75;
 	--flow-markdown-code-background-color: rgba(0,0,0,0.9);
@@ -111,16 +114,14 @@ body.flow-theme-dark {
 	--flow-terminal-color: #fff;
 	--flow-terminal-cursor: #ccc;
 	--flow-terminal-selection: rgba(100, 100, 100, 0.5);
-	--flow-box-shadow: 0 2px 15px 0 rgba(39, 206, 164, 0.14),
-		0 3px 1px -3px rgba(13,226,195,.2),
-		0 1px 15px 0 rgba(14,234,184,.12);
 	--flow-input-box-shadow: 0 0px 4px 0 #4C5157,
 		0 0px 0px -3px rgba(121, 255, 235, 0.2),
 		0 0px 1px 0 rgba(65, 255, 212, 0.12);
+	--flow-box-shadow: var(--flow-input-box-shadow);
 	--tx-bg-color-1: var(--flow-background-color);
 	--tx-bg-color-2: #282828;
 	--tx-bg-color-3: #333232;
-	--karlsen-dialog-bg-color: rgba(40,40,40,0.71);
+	--karlsen-dialog-bg-color: #232323;
 	--karlsen-wallet-tab-border-bottom-color: #333232;
 	--tx-border-color: #282828;
 }
