@@ -511,7 +511,7 @@ export class KarlsenWalletMobile extends KarlsenWalletUI{
 	renderLockScreen(){
 		return html`
 			<div class="lock-screen">
-				<div><img class="big-logo" src="/resources/images/karlsen.png"></div>
+				<div><img class="big-logo" src="${baseUrl+'/resources/images/karlsen.png'}"></div>
 				<fa-icon icon="lock"></fa-icon>
 				<flow-btn primary i18n @click="${this.unlockWallet}">UNLOCK WALLET</flow-btn>
 			</div>

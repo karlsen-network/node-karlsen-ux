@@ -1,5 +1,5 @@
 import {html, css, KarlsenDialog, i18n, T} from './karlsen-dialog.js';
-import {askForPassword} from "./wallet.js";
+import {askForPassword, baseUrl} from "./wallet.js";
 const pass = "";
 
 class KarlsenOpenDialog extends KarlsenDialog{
@@ -113,7 +113,7 @@ class KarlsenOpenDialog extends KarlsenDialog{
 		return html`
 			${this.hideLogo?'': html`
 			<div>
-				<img class="big-logo" src="/resources/images/karlsen.png" />
+				<img class="big-logo" src="${baseUrl+'/resources/images/karlsen.png'}" />
 			</div>`}
 			<div class="sub-heading" is="i18n-div">Unlock the wallet with your password:</div>
 			<flow-input class="password full-width" outer-border value="${pass}"
