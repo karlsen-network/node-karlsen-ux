@@ -1,5 +1,6 @@
 import {html, css, KarlsenDialog, i18n, T} from './karlsen-dialog.js';
-import {askForPassword} from "./wallet.js";
+import {askForPassword, baseUrl} from "./wallet.js";
+import {flow} from "./karlsen-wallet-ui";
 const pass = "";
 
 class KarlsenOpenDialog extends KarlsenDialog{
@@ -15,27 +16,99 @@ class KarlsenOpenDialog extends KarlsenDialog{
 
 	static get styles(){
 		return [KarlsenDialog.styles, css`
-			.container{max-height:var(--karlsen-dialog-container-max-height, 600px)}
-			:host([mode="create"]) .container{max-height:var(--karlsen-dialog-container-max-height, 500px)}
-			:host([mode="init"]) .container{max-height:var(--karlsen-dialog-container-max-height, 200px)}
-			:host([mode="recover"]) .container{max-height:var(--karlsen-dialog-container-max-height, 450px)}
-			.buttons{justify-content:center;--karlsen-dialog-buttons-width:100%;}
-			:host([mode="init"]) .buttons{justify-content:center}
-			:host([mode="open"]) .inner-body{padding:0px 30px;}
+          .container {
+            max-height: var(--karlsen-dialog-container-max-height, 600px);
+            border-radius: 8px;
+          }
 
-			.text-center, .heading{text-align:center;}
-			.words{margin:20px 0px;max-width:500px;margin:auto;}
-			.words .row{display:flex;justify-content:center;}
-			.words .cell{flex:1;width:10px;text-align:center;padding:5px}
-			input.seed{
-				border:2px solid var(--flow-primary-color);
-				border-radius:7px;padding:10px 5px;max-width:120px;
-				text-align:center;width:100%;box-sizing:border-box;
-			}
-			:host[isFresh] .close-btn{display:none}
-			.big-logo{max-width:150px;margin:10px auto 20px;display:block;}
-			.bottom-spacer{height:200px}
-		`];
+          :host([mode="create"]) .container {
+            max-height: var(--karlsen-dialog-container-max-height, 500px)
+          }
+
+          :host([mode="init"]) .container {
+            max-height: var(--karlsen-dialog-container-max-height, 200px)
+          }
+
+          :host([mode="recover"]) .container {
+            max-height: var(--karlsen-dialog-container-max-height, 450px)
+          }
+
+          .buttons {
+            justify-content: center;
+            --karlsen-dialog-buttons-width: 100%;
+          }
+
+          :host([mode="init"]) .buttons {
+            justify-content: center
+          }
+
+          :host([mode="open"]) .inner-body {
+            padding: 0px 30px;
+          }
+
+          .text-center, .heading {
+            text-align: center;
+          }
+
+          .words {
+            margin: 20px 0px;
+            max-width: 500px;
+            margin: auto;
+          }
+
+          .words .row {
+            display: flex;
+            justify-content: center;
+          }
+
+          .words .cell {
+            flex: 1;
+            width: 10px;
+            text-align: center;
+            padding: 5px
+          }
+
+          input.seed {
+            border: 2px solid var(--flow-primary-color);
+            border-radius: 7px;
+            padding: 10px 5px;
+            max-width: 120px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          :host[isFresh] .close-btn {
+            display: none
+          }
+
+          .big-logo {
+            max-width: 350px;
+            margin: 20px auto 40px;
+            display: block;
+            height: 100px;
+          }
+
+          .bottom-spacer {
+            height: 200px
+          }
+
+          .primary.no-bg-button {
+            background: none;
+            border: 1px solid var(--button-border--color);
+            color: var(--button-border--color);
+            font-weight: 600;
+          }
+
+          .secondary.default-button {
+            background: var(--button-color);
+            color: var(--flow-background-color);
+            border: none;
+            font-weight: 600;
+          }
+
+          
+        `];
 	}
 	constructor() {
 		super();
@@ -110,10 +183,11 @@ class KarlsenOpenDialog extends KarlsenDialog{
 	}
 	renderOpenUI(){
 		let icon = this.inputType=="password"?'eye':'eye-slash';
+        let theme = flow.app.getTheme("light")
 		return html`
 			${this.hideLogo?'': html`
 			<div>
-				<img class="big-logo" src="/resources/images/karlsen.png" />
+				<img class="big-logo" src="${baseUrl + `/resources/images/${theme === "light" ? 'logo-light.png' : 'logo.png'}`}" />
 			</div>`}
 			<div class="sub-heading" is="i18n-div">Unlock the wallet with your password:</div>
 			<flow-input class="password full-width" outer-border value="${pass}"
@@ -151,29 +225,29 @@ class KarlsenOpenDialog extends KarlsenDialog{
 	}
 	_renderOpenButtons(){
 		return html`
-			<flow-btn @click="${e=>this.mode='create'}" i18n>NEW WALLET</flow-btn>
-			<flow-btn primary @click="${this.openWallet}" i18n>OPEN WALLET</flow-btn>`;
+			<flow-btn class="primary no-bg-button"  @click="${e=>this.mode='create'}" i18n>New Wallet</flow-btn>
+			<flow-btn class="secondary default-button" primary @click="${this.openWallet}" i18n>Open Wallet</flow-btn>`;
 	}
 	renderCreateButtons(){
 		return html`
-			<flow-btn @click="${e=>this.mode=this.lastMode}" i18n>Cancel</flow-btn>
-			<flow-btn ?hidden=${this.isFresh} 
+			<flow-btn class="primary no-bg-button" @click="${e=>this.mode=this.lastMode}" i18n>Cancel</flow-btn>
+			<flow-btn class="primary no-bg-button" ?hidden=${this.isFresh} 
 				@click="${e=>this.mode='recover'}" i18n>I have a wallet</flow-btn>
-			<flow-btn primary @click="${this.showSeeds}" i18n>Next</flow-btn>
+			<flow-btn class="secondary default-button" primary @click="${this.showSeeds}" i18n>Next</flow-btn>
 			`;
 	}
 	renderInitButtons(){
 		return html`
-			<flow-btn class="primary"
+			<flow-btn class="primary no-bg-button"
 				@click="${e=>this.mode='create'}" i18n>Create New Wallet</flow-btn>
-			<flow-btn class="primary"
+			<flow-btn class="secondary default-button"
 				@click="${e=>this.mode='recover'}" i18n>Recover from Seed</flow-btn>`;
 	}
 	renderRecoverButtons(){
 		
 		return html`
-			<flow-btn @click="${this.cancelRecover}" i18n>Cancel</flow-btn>
-			<flow-btn primary @click="${this.recoverWallet}" i18n>Recover Wallet</flow-btn>`;
+			<flow-btn class="primary no-bg-button" @click="${this.cancelRecover}" i18n>Cancel</flow-btn>
+			<flow-btn class="secondary default-button" primary @click="${this.recoverWallet}" i18n>Recover Wallet</flow-btn>`;
 	}
 	cancelRecover(){
 		if(this.args?.backToWallet){

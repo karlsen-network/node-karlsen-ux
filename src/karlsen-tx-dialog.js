@@ -20,12 +20,12 @@ class KarlsenTXDialog extends KarlsenDialog{
 				--k-pagination-border-color:var(--flow-primary-color);
 			}
 			.pagination a{
-				border: var(--flow-btn-border, 2px solid var(--flow-border-color, var(--flow-primary-color, #4C5157)));
+				border: var(--flow-btn-border, 1px solid var(--flow-border-color, var(--flow-primary-color, #4C5157)));
 				border-radius:var(--flow-btn-radius, 8px);
 				border-width:var(--flow-btn-border-width, 2px);
 			}
 			.pagination-box{
-				padding:var(--karlsen-pagination-box-padding, 10px 5px;);
+				padding:var(--karlsen-pagination-box-padding, 10px 5px);
 			}
 			.inner-body, .buttons{width:calc(100% - 5px)}
 			.inner-body{max-width:100%;padding:0px;}
