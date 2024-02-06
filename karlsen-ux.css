@@ -119,7 +119,7 @@ body.flow-theme-dark {
 		0 0px 1px 0 rgba(65, 255, 212, 0.12);
 	--flow-box-shadow: var(--flow-input-box-shadow);
 	--tx-bg-color-1: var(--flow-background-color);
-	--tx-bg-color-2: #282828;
+	--tx-bg-color-2: #232323;
 	--tx-bg-color-3: #333232;
 	--karlsen-dialog-bg-color: #232323;
 	--karlsen-wallet-tab-border-bottom-color: #333232;
